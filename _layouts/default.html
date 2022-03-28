@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
 
 {% seo %}
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#157878">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -16,16 +14,18 @@
     <a id="skip-to-content" href="#content">Skip to the content.</a>
 
     <div class="background-videos">
-      <video id="video" playsinline autoplay muted loop poster="{{ 'assets/videos/poster-'  | append: site.github.build_revision | relative_url }}">
-        <source src="{{ 'assets/videos/video-'  | append: site.github.build_revision | relative_url }}" >
+      <video id="video" playsinline muted autoplay loop poster="{{ 'assets/videos/poster-1.png'  | append: site.github.build_revision | relative_url }}">
+        <source src="{{ 'assets/videos/video-1.m4v'  | append: site.github.build_revision | relative_url }}" >
       </video>
       <script>
         var videos = ["1", "2"];
-        var video = document.getElementById('video');
-        var source = video.getElementsByTagName('source')[0];
+        var player = document.getElementById('video');
+        var source = player.getElementsByTagName('source')[0];
         var item = videos[Math.floor(Math.random() * videos.length)];
-        video.poster += item +'.png';
-        source.src += item +'.mp4';
+        player.poster = player.poster.split('-')[0] + '-' + item +'.png';
+        source.src = source.src.split('-')[0] + '-' + item +'.m4v';
+        player.load();
+        player.play();
       </script>
     </div>
 
