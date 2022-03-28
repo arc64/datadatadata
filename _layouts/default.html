@@ -16,12 +16,17 @@
     <a id="skip-to-content" href="#content">Skip to the content.</a>
 
     <div class="background-videos">
-      <video playsinline autoplay muted loop poster="{{ 'assets/videos/waves-sea.png'  | append: site.github.build_revision | relative_url }}">
-        <source src="{{ 'assets/videos/waves-sea.m4v'  | append: site.github.build_revision | relative_url }}" >
+      <video id="video" playsinline autoplay muted loop poster="{{ 'assets/videos/poster-'  | append: site.github.build_revision | relative_url }}">
+        <source src="{{ 'assets/videos/video-'  | append: site.github.build_revision | relative_url }}" >
       </video>
-      <!-- <video playsinline autoplay muted loop poster="{{ 'assets/videos/waves-sea.png'  | append: site.github.build_revision | relative_url }}">
-        <source src="{{ 'assets/videos/waves-sea.m4v'  | append: site.github.build_revision | relative_url }}" type="{{ 'video/mp4' }}">
-      </video> -->
+      <script>
+        var videos = ["1", "2"];
+        var video = document.getElementById('video');
+        var source = video.getElementsByTagName('source')[0];
+        var item = videos[Math.floor(Math.random() * videos.length)];
+        video.poster += item +'.png';
+        source.src += item +'.mp4';
+      </script>
     </div>
 
     <div class="wrapper">
@@ -61,10 +66,7 @@
 
             <p>Data Data Data is an ontological web experience created by Sherry Wong and Caroline Sinders that uses art as a conduit for exploration on the new ways to rethink and resituate data. This was incubated with support from the Berggruen Institute and Transformations of the Human School.</p>
 
-            <h2>Acknowledgment</h2>
-
-            <p>This project is grateful to the support of the Berggruen Institute’s Transformation of the Human Program.</p>
-        </span>
+          </span>
         </footer>
       </main>
     </div>

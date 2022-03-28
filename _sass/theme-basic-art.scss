@@ -360,17 +360,19 @@ a {
 }
 
 .background-videos {
+  position: fixed;
   display: flex;
   flex-direction: column;
-  height: 50vh;
+  height: 100vh;
 
   video {
     object-fit: cover;
-    width: 100vw;
-    // height: 50vh;
-    /* position: fixed; */
-    /* top: 0; */
-    /* left: 0; */
+    // width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 
