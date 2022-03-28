@@ -1,1 +1,9 @@
-theme: jekyll-theme-cayman
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "" # the subpath of your site, e.g. /blog
+title: "Data Data Data"
+description: "Data Data Data is an ontological web experience created by Sherry Wong and Caroline Sinders that uses art as a conduit for exploration on the new ways to rethink and resituate data. This was incubated with support from the Berggruen Institute and Transformations of the Human School."
+byline: "Created by Sherry Wong and Caroline Sinders"
+analytics:
+
+plugins:
+  - jekyll-seo-tag
