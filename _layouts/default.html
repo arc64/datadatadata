@@ -13,62 +13,7 @@
   <body>
     <a id="skip-to-content" href="#content">Skip to the content.</a>
 
-    <div class="background-videos">
-      <video id="video" playsinline muted autoplay loop poster="{{ 'assets/videos/poster-1.png'  | append: site.github.build_revision | relative_url }}">
-        <source src="{{ 'assets/videos/video-1.m4v'  | append: site.github.build_revision | relative_url }}" >
-      </video>
-      <script>
-        var videos = ["1", "2"];
-        var player = document.getElementById('video');
-        var source = player.getElementsByTagName('source')[0];
-        var item = videos[Math.floor(Math.random() * videos.length)];
-        player.poster = player.poster.split('-')[0] + '-' + item +'.png';
-        source.src = source.src.split('-')[0] + '-' + item +'.m4v';
-        player.load();
-        player.play();
-      </script>
-    </div>
-
-    <div class="wrapper">
-      <header class="page-header" role="banner">
-        <h1 class="project-name">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
-        <h2 class="project-byline">{{ page.byline | default: site.byline }}</h2>
-      </header>
-
-      <main id="content" class="main-content" role="main">
-        <div class="dazzler">
-          <div class="callout">
-            <h2>Data Fluidity</h2>
-
-            <p>Predictive algorithms trained on our data set in motion possibilities for our lives. Our selves, lives, and environments are shaped by data, from tangible infrastructures that run our supply chains, to our electrical grid, to our identities. Data determines how we are seen and what we see. Our metaphors describing data as oil or gold fall short in helping us understand data as a concept especially framed against the ever-increasing flow of data and algorithms that allow for data’s increased legibility. Describing or contextualizing data as a singular, finite commodity is limited. Data is more than this; it is also changing every moment, photographed often but never captured, mutable. Data is not finite, but fluid. Let’s name this phenomenon: massive data fluidity.</p>
-
-            <p>The evolution of the data broker — from tradesman of data objects such as birth certificates, into the mid-century age of advertising, through to the digital advertising and eras of analytics — demonstrate economic incentives. These transactional qualities of brokering and tracking are integral to understanding data but we need to expand how we think of data to be multi-state, like light which can be both a wave and a particle, so that data can be both a commodity and a flow.</p>
-          </div>
-
-          <div class="callout">
-            <h2>Why Is Data Stored In SpreadSheets?</h2>
-
-            <p>Why is data stored in a spreadsheet, reduced to small boxes? Is how we think of data, guided by the formal constraints of technology, and not reflective of the actual form/existence/nature of data?  Perhaps, the way we think about storing data is wrong- or rather, how we’ve invented to store data isn’t representative of the state of data. Data has a past, present and future, and can change shapes, but we only capture very small, small ‘bits’ of data.</p>
-
-            <p>A person can change- they grow and evolve, but we force data into a spreadsheet, into a very containerized space. What makes data valuable is how companies view the individual entity of data, and ascribe value to that. This ‘worth’ guides the extraction and displacement of data to the spreadsheet and the spreadsheet. The spreadsheet itself is a specific but arbitrary container determined by binary code and tech. In this way, does  form follow or does the existence of data guide the shape of the form?</p>
-
-            <p>Data is contextual: where it comes from, who used it and how, must be accounted for. But more importantly, data has a past, present and future, which is difficult to legibly preserve. Data has to be captured and stored in something, like spreadsheets for example. A spreadsheet is a very structured container.  Since all data must be stored in a container representative of other containers and must be usable and useful for other systems, this creates a flattening of context. Nuance and context are difficult to include as something to measure and quantify. But despite these layers of meaning, data is ubiquitous and commodified. The problem of ‘data is worth x’ is that this description masks the difference that data generated from networks actually makes.</p>
-
-            <p>What is a new container for data that works beyond a spreadsheet and what is the more ‘true’ container of data? Can we remove the existence of a spreadsheet and start thinking towards what new containers could be?</p>
-          </div>
-        </div>
-
         {{ content }}
 
-        <footer class="site-footer">
-          <span class="site-footer-credits">
-            <h2>About</h2>
-
-            <p>Data Data Data is an ontological web experience created by Sherry Wong and Caroline Sinders that uses art as a conduit for exploration on the new ways to rethink and resituate data. This was incubated with support from the Berggruen Institute and Transformations of the Human School.</p>
-
-          </span>
-        </footer>
-      </main>
-    </div>
   </body>
 </html>

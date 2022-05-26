@@ -1,0 +1,134 @@
+---
+layout: default
+title: "Coming soon: An Ontological Experience on Data Fluidity"
+byline: "Created by Sherry Wong and Caroline Sinders"
+---
+
+<div class="wrapper">
+  <main id="content" class="main-content" role="main">
+    <div class="callout">
+      <a href="{{ 'about.html' }}">About</a>
+    </div>
+
+    <p class="pop">It's both a particle and a wave</p>
+    <p class="pop2">It's both a particle and a wave</p>
+  </main>
+
+  <figure>
+    <canvas id="canvas">
+      Your browser does not support HTML5 Canvas.
+    </canvas>
+  </figure>
+  <div class="videos">
+    <!-- <video id="video" preload="auto" controls playsinline muted loop poster="{{ 'assets/videos/poster-1.png'  | append: site.github.build_revision | relative_url }}">
+      <source src="{{ 'assets/videos/video-1.m4v'  | append: site.github.build_revision | relative_url }}" >
+    </video> -->
+
+    <!-- <div><div id="loadingStatus">0%</div></div> -->
+  </div>
+  <script type="module" src="/assets/js/video.js" ></script>
+
+
+  <script type="module">
+    // TODO: minify js and css
+
+    import { canvasDimentions, redraw, debugCanvas } from "/assets/js/canvas.js";
+    import { supportedVideoFormat } from "/assets/js/video.js";
+
+    // Debugging video
+
+    var videoElement;
+    var videoDiv;
+
+    const drawScreen = (context, canvas) => {
+      console.log("draw")
+      context.fillRect(0, 0, canvas.width, canvas.height);
+
+      //video
+      context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+
+      debugCanvas(context, videoElement);
+
+      // animate video
+      requestAnimationFrame(function() {drawScreen(context, canvas)});
+
+    }
+
+    const embedVideos = () => {
+
+      videoElement = document.createElement("video");
+      videoElement.muted = true;
+      videoElement.loop = true;
+
+      videoDiv = document.createElement('div');
+      document.body.appendChild(videoDiv);
+      videoDiv.appendChild(videoElement);
+      //  videoDiv.setAttribute("style", "display:none;");
+
+      videoElement.setAttribute("src", "{{ 'assets/videos/video-1.'  | append: site.github.build_revision | relative_url }}" + videoType);
+      videoElement.addEventListener("canplaythrough",videoLoaded,false);
+
+      var videoType = supportedVideoFormat(videoElement);
+      if (videoType == "") {
+          //TODO: display better error messages
+          alert("no video support");
+          return;
+      }
+    }
+
+    const canvasApp = () => {
+      var theCanvas = document.getElementById("canvas");
+      // when window is resized, resize and draw the canvas
+      new ResizeObserver(() => redraw(theCanvas, drawScreen)).observe(theCanvas)
+
+    }
+
+    const videoLoaded = (event) => {
+      videoElement.play();
+      canvasApp();
+    }
+
+    // window.addEventListener('load', embedVideos, false);
+
+  </script>
+
+
+
+<style>
+
+  .wrapper {
+    width: 100%;
+    height: 100%;
+    background: rgb(173,64,254);
+    background: linear-gradient(0deg, rgba(173,64,254,1) 0%, rgba(60,125,245,1) 100%);
+  }
+
+  figure {
+    /* margin: 0;
+    padding: 0;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    position: fixed; left: 0; top: 0; width: 100vw; height: 100vh; z-index: 1; */
+  }
+
+  #loadingStatus {
+    position: fixed;
+    top: 0;
+  }
+
+  canvas {
+    width: 100%;
+    height: 100%;
+    /* min-height: 400px;
+    min-width: 600px; */
+    /* object-fit: contain; */
+  }
+
+  /* canvas {
+    display: inline-block;
+  } */
+</style>
+
+
+</div>

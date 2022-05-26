@@ -7,3 +7,9 @@ analytics:
 
 plugins:
   - jekyll-seo-tag
+  - jekyll-node-module
+
+node_modules:
+  assets:
+    js: assets/vendor/scripts
+    css: assets/vendor/styles
