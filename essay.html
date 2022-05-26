@@ -1,0 +1,48 @@
+---
+layout: default
+title: "An Ontological Experience on Data Fluidity"
+byline: "Created by Sherry Wong and Caroline Sinders"
+---
+
+
+<div class="background-videos">
+	<video id="video" playsinline muted autoplay loop poster="{{ 'assets/videos/poster-1.png'  | append: site.github.build_revision | relative_url }}">
+	  <source src="{{ 'assets/videos/video-1.m4v'  | append: site.github.build_revision | relative_url }}" >
+	</video>
+	<script>
+	  var videos = ["1", "2"];
+	  var player = document.getElementById('video');
+	  var source = player.getElementsByTagName('source')[0];
+	  var item = videos[Math.floor(Math.random() * videos.length)];
+	  player.poster = player.poster.split('-')[0] + '-' + item +'.png';
+	  source.src = source.src.split('-')[0] + '-' + item +'.m4v';
+	  player.load();
+	  player.play();
+	</script>
+  </div>
+
+  <div class="wrapper essay">
+	<!-- <header class="page-header" role="banner">
+	  <h1 class="project-name">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
+	  <h2 class="project-byline">{{ page.byline | default: site.byline }}</h2>
+	</header> -->
+
+	<main id="content" class="main-content" role="main">
+		<div class="dazzler">
+			<div class="nav">
+				<div class="action">
+					<a href="{{ 'index.html' }}">Home</a>
+				</div>
+			</div>
+
+
+			<div class="callout">
+				<h2>Data Fluidity</h2>
+
+				<p>Predictive algorithms trained on our data set in motion possibilities for our lives. Our selves, lives, and environments are shaped by data, from tangible infrastructures that run our supply chains, to our electrical grid, to our identities. Data determines how we are seen and what we see. Our metaphors describing data as oil or gold fall short in helping us understand data as a concept especially framed against the ever-increasing flow of data and algorithms that allow for data’s increased legibility. Describing or contextualizing data as a singular, finite commodity is limited. Data is more than this; it is also changing every moment, photographed often but never captured, mutable. Data is not finite, but fluid. Let’s name this phenomenon: massive data fluidity.</p>
+
+				<p>The evolution of the data broker — from tradesman of data objects such as birth certificates, into the mid-century age of advertising, through to the digital advertising and eras of analytics — demonstrate economic incentives. These transactional qualities of brokering and tracking are integral to understanding data but we need to expand how we think of data to be multi-state, like light which can be both a wave and a particle, so that data can be both a commodity and a flow.</p>
+			</div>
+		</div>
+	</main>
+  </div>
