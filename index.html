@@ -13,10 +13,10 @@ byline: "Created by Sherry Wong and Caroline Sinders"
     </div>
 
     <div class="title">
-      <h1>Data Data Data Data</h1>
+      <h1 class="experience">Data Data Data Data</h1>
     </div>
     <div class="overlay">
-      <div class="action launch">
+      <div id="launch" class="action launch">
         <p>Click here to launch experience</p>
       </div>
     </div>
@@ -24,15 +24,50 @@ byline: "Created by Sherry Wong and Caroline Sinders"
     <p class="pop lower">It's both a particle and a wave</p>
   </main>
 
-  <figure>
+  <figure id="experience">
     <canvas id="canvas">
       Your browser does not support HTML5 Canvas.
     </canvas>
+    <div class="controls">
+      <div class="title" id="act-title">
+        <h1>Act 1</h1>
+      </div>
+      <div class="next">
+        <a id="next" title="Next" tabindex="1" href="/">
+          <?xml version="1.0" encoding="UTF-8"?>
+          <svg enable-background="new 0 0 170 297" version="1.1" viewBox="0 0 170 297" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+            <path d="m84.94 211.91h41.99v-41.92h-41.85v42.06h-42.01v42h41.87v-42.14z"/>
+            <path d="m42 0c0.15 12.03 0.27 24.06 0.49 36.09 0.03 1.9 0.51 3.8 0.78 5.69l0.13-0.14c-14.47 0.12-28.93 0.24-43.4 0.36v-42h42z"/>
+            <path d="m126.61 127.35c14.46-0.12 28.92-0.23 43.39-0.35v42h-42.46c0-11.67 0.04-23.1-0.04-34.54-0.02-2.42-0.49-4.84-0.76-7.26l-0.13 0.15z"/>
+            <path d="m0 255h42v42h-42v-42z"/>
+            <path d="m43.27 41.78h41.33v42.25h-41.8c0-11.97-0.03-23.74 0.03-35.5 0.01-2.29 0.37-4.58 0.57-6.88 0-0.01-0.13 0.13-0.13 0.13z"/>
+            <path d="m126.75 127.21h-41.51v-42.17h41.97c0 7.75 0.08 15.35-0.02 22.95-0.08 6.45-0.37 12.91-0.57 19.36-0.01 0 0.13-0.14 0.13-0.14z"/>
+            <path d="m85.08 212.05v-42.06h41.85v41.92h-41.99l0.14 0.14z"/>
+            <path d="m84.94 211.91v42.14h-41.87v-42h42.01l-0.14-0.14z"/>
+
+          </svg>
+        </a>
+      </div>
+      <div class="back">
+        <a id="back" title="Go back" tabindex="2" href="/">
+          <?xml version="1.0" encoding="UTF-8"?>
+          <svg enable-background="new 0 0 170 297" version="1.1" viewBox="0 0 170 297" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+            <path d="m84.94 211.91h41.99v-41.92h-41.85v42.06h-42.01v42h41.87v-42.14z"/>
+            <path d="m42 0c0.15 12.03 0.27 24.06 0.49 36.09 0.03 1.9 0.51 3.8 0.78 5.69l0.13-0.14c-14.47 0.12-28.93 0.24-43.4 0.36v-42h42z"/>
+            <path d="m126.61 127.35c14.46-0.12 28.92-0.23 43.39-0.35v42h-42.46c0-11.67 0.04-23.1-0.04-34.54-0.02-2.42-0.49-4.84-0.76-7.26l-0.13 0.15z"/>
+            <path d="m0 255h42v42h-42v-42z"/>
+            <path d="m43.27 41.78h41.33v42.25h-41.8c0-11.97-0.03-23.74 0.03-35.5 0.01-2.29 0.37-4.58 0.57-6.88 0-0.01-0.13 0.13-0.13 0.13z"/>
+            <path d="m126.75 127.21h-41.51v-42.17h41.97c0 7.75 0.08 15.35-0.02 22.95-0.08 6.45-0.37 12.91-0.57 19.36-0.01 0 0.13-0.14 0.13-0.14z"/>
+            <path d="m85.08 212.05v-42.06h41.85v41.92h-41.99l0.14 0.14z"/>
+            <path d="m84.94 211.91v42.14h-41.87v-42h42.01l-0.14-0.14z"/>
+
+          </svg>
+        </a>
+      </div>
+    </div>
   </figure>
-  <div class="videos">
-    <!-- <video id="video" preload="auto" controls playsinline muted loop poster="{{ 'assets/videos/poster-1.png'  | append: site.github.build_revision | relative_url }}">
-      <source src="{{ 'assets/videos/video-1.m4v'  | append: site.github.build_revision | relative_url }}" >
-    </video> -->
+  <div id="videos">
+    <!-- -->
 
     <!-- <div><div id="loadingStatus">0%</div></div> -->
   </div>
@@ -41,79 +76,170 @@ byline: "Created by Sherry Wong and Caroline Sinders"
 
   <script type="module">
     // TODO: minify js and css
+    // TODO: fallback for SVG
+    // TODO: addd css vender prefixes
 
     import { canvasDimentions, redraw, debugCanvas } from "/assets/js/canvas.js";
-    import { supportedVideoFormat } from "/assets/js/video.js";
+    import { supportedVideoFormat, createVideoEmbed } from "/assets/js/video.js";
+    import { acts, essayPath } from "/assets/js/acts.js";
 
-    // Debugging video
 
-    var videoElement;
-    var videoDiv;
+    const experience = () => {
+      let canvas = document.getElementById("canvas");
 
-    const drawScreen = (context, canvas) => {
-      console.log("draw")
-      context.fillRect(0, 0, canvas.width, canvas.height);
+      let currentState = -1;
+      let playbackPaused = true;
 
-      //video
-      context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
-
-      debugCanvas(context, videoElement);
-
-      // animate video
-      requestAnimationFrame(function() {drawScreen(context, canvas)});
-
-    }
-
-    const embedVideos = () => {
-
-      videoElement = document.createElement("video");
-      videoElement.muted = true;
-      videoElement.loop = true;
-
-      videoDiv = document.createElement('div');
-      document.body.appendChild(videoDiv);
-      videoDiv.appendChild(videoElement);
-      //  videoDiv.setAttribute("style", "display:none;");
-
-      videoElement.setAttribute("src", "{{ 'assets/videos/video-1.'  | append: site.github.build_revision | relative_url }}" + videoType);
-      videoElement.addEventListener("canplaythrough",videoLoaded,false);
-
-      var videoType = supportedVideoFormat(videoElement);
-      if (videoType == "") {
-          //TODO: display better error messages
-          alert("no video support");
-          return;
+      const preloadVideo = (video) => {
+        let videoElement;
+        let videoDiv = document.getElementById("videos");
+        videoDiv.setAttribute("style", "display:none;");
+        videoElement = createVideoEmbed(video);
+        videoDiv.appendChild(videoElement);
+        return videoElement;
       }
-    }
 
-    const canvasApp = () => {
-      var theCanvas = document.getElementById("canvas");
-      // when window is resized, resize and draw the canvas
-      new ResizeObserver(() => redraw(theCanvas, drawScreen)).observe(theCanvas)
+      let context = canvas.getContext('2d')
 
-    }
+      // Fade to black / start experience
 
-    const videoLoaded = (event) => {
-      videoElement.play();
-      canvasApp();
-    }
+      const launchExperience = () => {
+        document.getElementById("launch").classList.remove("display");
+        document.getElementById("launch").classList.add("hide");
+        document.getElementById("experience").classList.add("display");
+      }
 
-    // window.addEventListener('load', embedVideos, false);
+      const advanceExperience = (e) => {
+        e.preventDefault();
+        playbackPaused = true;
 
+        if (currentState === -1) {
+          document.getElementById("act-title").classList.add("hide");
+          document.getElementById("next").classList.add("active");
+        }
+
+        currentState++
+
+        if (currentState > acts.length - 1) {
+          window.location.href = essayPath
+        }
+
+        const currentAct = acts[currentState]
+        const nextAct = acts[currentState + 1]
+
+        stopAllPlayback()
+
+        if (nextAct) {
+          preloadVideo(nextAct)
+        }
+
+        currentAct.videos.forEach(function(video) {
+          preloadVideo(video)
+        })
+
+        playbackPaused = false;
+        playbackAct(currentAct);
+      }
+
+      const rewindExperience = () => {
+      }
+
+      const playbackAct = (act) => {
+        // the background video has to have loaded ?
+
+        const videoElement = document.getElementById(act.id);
+        videoElement.play();
+
+        act.videos.forEach(function(video) {
+          const videoElement = document.getElementById(video.id);
+          setTimeout(function () {
+            videoElement.play();
+          }, video.startAt)
+        })
+
+        requestAnimationFrame(drawCanvas);
+      }
+
+      const stopAllPlayback = () => {
+        var videos = document.querySelectorAll("video");
+
+        [].forEach.call(videos, function(video) {
+          video.pause()
+        });
+
+        // clearAllTimeouts
+        const nextTimeout = setTimeout(function(){}, 0);
+        for (let i = 1; i <= nextTimeout; i++) {
+          clearTimeout(i);
+        }
+      }
+
+      // add user actions
+      document.getElementById("launch").addEventListener('click', launchExperience);
+      document.getElementById("next").addEventListener('click', function(e) { advanceExperience(e); });
+      document.getElementById("back").addEventListener('click', rewindExperience);
+
+      const drawCanvas = () => {
+        if (playbackPaused) {
+          return;
+        }
+
+        let {dpr, cssWidth, cssHeight, pxWidth, pxHeight} = canvasDimentions(canvas)
+        canvas.width = pxWidth
+        canvas.height = pxHeight
+        canvas.dpr = dpr
+
+        context.scale(dpr, dpr)
+
+        context.fillRect(0, 0, canvas.width, canvas.height);
+
+        const currentAct = acts[currentState]
+
+        drawVideo(currentAct, dpr);
+
+        currentAct.videos.forEach(function(video) {
+          const videoElement = document.getElementById(video.id);
+          if (!videoElement.paused) {
+            drawVideo(video, dpr);
+          }
+        })
+
+        requestAnimationFrame(drawCanvas);
+      }
+
+      const drawVideo = (video, dpr) => {
+        let currentVideo = document.getElementById(video.id);
+
+        let left = 0;
+        let top = 0;
+        let width = canvas.width;
+        let height = canvas.height;
+
+        if (video.background !== true) {
+          left = canvas.width * video.left / dpr;
+          top = canvas.height * video.top / dpr;
+          width = canvas.width * video.width;
+          height = canvas.width * video.width * 1080 / 1920;
+        }
+
+        context.drawImage(currentVideo, left, top, width, height);
+
+        // debugCanvas(context, currentVideo);
+      }
+
+      const videoElement = preloadVideo(acts[currentState + 1])
+
+      videoElement.addEventListener("canplaythrough", function () {
+        document.getElementById("launch").classList.add("display");
+      }, false);
+
+    };
+
+
+    experience();
   </script>
 
-
-
 <style>
-
-  figure {
-    /* margin: 0;
-    padding: 0;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    position: fixed; left: 0; top: 0; width: 100vw; height: 100vh; z-index: 1; */
-  }
 
   #loadingStatus {
     position: fixed;

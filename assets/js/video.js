@@ -15,4 +15,31 @@ const supportedVideoFormat = (video) => {
 	return returnExtension;
 }
 
-export {supportedVideoFormat}
+
+const createVideoEmbed = (video) => {
+	let videoElement = document.createElement("video");
+
+	if (video.background) {
+		videoElement.muted = true;
+		//videoElement.preload = "auto";
+		// videoElement.autoplay = "autoplay";
+	}
+
+	videoElement.loop = true;
+	videoElement.controls = true;
+	// videoElement.playsinline = true;
+
+	var videoType = supportedVideoFormat(videoElement);
+	if (videoType == "") {
+		//TODO: display better error messages
+		alert("no video support");
+		return;
+	}
+
+	videoElement.id = video.id;
+	videoElement.src = video.src;
+	videoElement.poster = video.poster;
+	return videoElement;
+}
+
+export {supportedVideoFormat, createVideoEmbed}

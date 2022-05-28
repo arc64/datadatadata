@@ -9,20 +9,20 @@
   }
 
   const redraw = (canvas, draw) => {
-	  console.log("redraw")
-	  // DPI-corrected CSS dimensions
-	  let {dpr, cssWidth, cssHeight, pxWidth, pxHeight} = canvasDimentions(canvas)
-	  canvas.width = pxWidth
-	  canvas.height = pxHeight
+	//   // DPI-corrected CSS dimensions
+	//   let {dpr, cssWidth, cssHeight, pxWidth, pxHeight} = canvasDimentions(canvas)
+	//   canvas.width = pxWidth
+	//   canvas.height = pxHeight
 
-	  let ctx = canvas.getContext('2d')
-	  ctx.scale(dpr, dpr)
-	  // draw videos
-	  console.log("redraw", dpr)
-	  draw(ctx, canvas);
+	//   let context = canvas.getContext('2d')
+	//   context.scale(dpr, dpr)
+	//   // draw videos
+	//   console.log("redraw", dpr)
+	//   draw(canvas);
   }
 
   const debugCanvas = (context, videoElement) => {
+	///console.log("debug", context, videoElement)
 	context.fillStyle = "#000000";
 	context.fillText  ("Duration:" + videoElement.duration,  10 ,280);
 	context.fillText  ("Current time:" + videoElement.currentTime,  260 ,280);

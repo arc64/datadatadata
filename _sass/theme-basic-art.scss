@@ -453,11 +453,14 @@ a {
   line-height: 1.2;
   width: 17rem;
   color: #fff;
-  text-shadow:  0 0 2px #fff,
-                1px 0 2px #fff,
-                0 1px 2px #fff,
-                -1px 0 2px #fff,
-                0 -1px 2px #fff;
+
+  &.experience {
+    text-shadow:  0 0 2px #fff,
+    1px 0 2px #fff,
+    0 1px 2px #fff,
+    -1px 0 2px #fff,
+    0 -1px 2px #fff;
+  }
 }
 
 .pop {
@@ -499,6 +502,110 @@ a {
   background: linear-gradient(0deg, rgba(195, 0, 255,1) 0%, rgba(73, 148, 247,1) 100%);
 }
 
+/* Experience */
+.next, .back.display {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30%;
+  height: 100vh;
+
+  a {
+    height: 100vh;
+    width: 100%;
+    display: inline-block;
+  }
+
+  svg {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 6rem;
+  }
+
+  svg path {
+    fill: #fff !important;
+  }
+}
+
+.next .active {
+  svg {
+    left: 75%;
+    height: 4rem;
+    fill: #000 !important;
+  }
+}
+
+.back {
+  left: 0;
+  display: none;
+
+  svg {
+    transform: translate(-50%, -50%) scaleX(-1);
+    display: inline-block;
+  }
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+
+  .action {
+    width: 12.7em;
+  }
+
+  .action p:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+figure {
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background-color: black;
+}
+
+.launch {
+  z-index: -1;
+}
+
+.display {
+  z-index: 100;
+
+  animation: pulse 3s;
+}
+
+.hide {
+  z-index: -1;
+  animation: pulse 3s;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Essay */
 .essay {
   .dazzler {
     width: 100%;
@@ -511,6 +618,7 @@ a {
   }
 }
 
+/* About */
 .about {
   &.wrapper {
     height: 100%;
@@ -573,28 +681,6 @@ a {
       }
     }
 
-  }
-}
-
-.overlay {
-  width: 100%;
-  height: 100%;
-
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-
-  .action {
-    width: 12.7em;
-  }
-
-  .action p:hover {
-    text-decoration: underline;
-    cursor: pointer;
   }
 }
 

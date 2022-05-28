@@ -6,18 +6,18 @@ byline: "Created by Sherry Wong and Caroline Sinders"
 
 
 <div class="background-videos">
-	<video id="video" playsinline muted autoplay loop poster="{{ 'assets/videos/poster-1.png'  | append: site.github.build_revision | relative_url }}">
+	<video id="video" playsinline muted loop poster="{{ 'assets/videos/poster-1.png'  | append: site.github.build_revision | relative_url }}">
 	  <source src="{{ 'assets/videos/video-1.m4v'  | append: site.github.build_revision | relative_url }}" >
 	</video>
 	<script>
-	  var videos = ["1", "2"];
-	  var player = document.getElementById('video');
-	  var source = player.getElementsByTagName('source')[0];
-	  var item = videos[Math.floor(Math.random() * videos.length)];
-	  player.poster = player.poster.split('-')[0] + '-' + item +'.png';
-	  source.src = source.src.split('-')[0] + '-' + item +'.m4v';
-	  player.load();
-	  player.play();
+	   var videos = ["1", "2"];
+	   var player = document.getElementById('video');
+	   var source = player.getElementsByTagName('source')[0];
+	   var item = videos[Math.floor(Math.random() * videos.length)];
+	   player.poster = player.poster.split('-')[0] + '-' + item +'.png';
+	   source.src = source.src.split('-')[0] + '-' + item +'.m4v';
+	   //player.load();
+	   player.play();
 	</script>
   </div>
 
